@@ -1,0 +1,25 @@
+package com.cloudstreamplugins.pstreamprovider
+
+import com.lagradost.cloudstream3.*
+import com.lagradost.cloudstream3.utils.AppUtils
+
+class PStreamProvider : MainAPI() {
+
+    override var mainUrl = "https://pstream.mov"
+    override var name = "PStream Provider"
+    override val supportedTypes = setOf(TvType.Movie, TvType.TvSeries)
+    override val hasMainPage = false
+
+    override suspend fun load(url: String): LoadResponse {
+        val doc = app.get(url).document
+        val title = doc.selectFirst("h1")?.text() ?: ""
+        val poster = doc.selectFirst("img")?.attr("src")
+        return newMovieLoadResponse(title, url, TvType.Movie, url) {
+            this.posterUrl = poster
+        }
+    }
+
+    override suspend fun search(query: String): List<SearchResponse> {
+        return emptyList()
+    }
+}
