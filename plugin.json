@@ -1,0 +1,9 @@
+{
+  "name": "PStream Provider",
+  "description": "Categorised PStream links by streaming service",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/BILLYMcRILLY/cloudstream-pstream/main/PStreamProvider.cs3"
+  ],
+  "author": "BILLYMcRILLY"
+}
